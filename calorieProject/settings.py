@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/6.0/ref/settings/
 """
 
+from decouple import config
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -72,14 +73,16 @@ WSGI_APPLICATION = 'calorieProject.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/6.0/ref/settings/#databases
-
-SECRET_KEY = 'django-insecure-h-vcs5tbl^(^x2nn1kvhh16s%f3zne@i8)ky4@^*i6h+t=k1go'
-DATABASE_NAME = 'author_db'
-DATABASE_USER = 'Amor'
-DATABASE_PASSWORD = 'Amor.Lyka1'
-DATABASE_HOST = 'localhost'
-DATABASE_PORT = '5432'
-ALLOWED_HOSTS = []
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': config('DATABASE_NAME'),
+        'USER': config('DATABASE_USER'),
+        'PASSWORD':config('DATABASE_PASSWORD'),
+        'HOST': config('DATABASE_HOST'),
+        'PORT': config('DATABASE_PORT'),
+    }
+}
 
 
 # Password validation
