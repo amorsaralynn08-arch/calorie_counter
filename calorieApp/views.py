@@ -12,3 +12,17 @@ def home(request):
     }
 
     return render(request, "home.html", context)
+
+def add_food(request):
+    if request.method == "POST":
+        food_name = request.POST.get("food_name")
+        calories = request.POST.get("calories")
+
+        Food.objects.create(
+            food_name=food_name,
+            calories=calories
+        )
+
+        return redirect("home")
+
+    return render(request, "add_food.html")
