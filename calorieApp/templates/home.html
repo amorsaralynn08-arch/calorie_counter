@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>Today's Food</h2>
+
+<a href="{% url 'add_food' %}" class="btn btn-primary mb-3">
+    Add Food
+</a>
+
+<a href="{% url 'reset_calories' %}" class="btn btn-danger mb-3">
+    Reset Day
+</a>
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Food</th>
+            <th>Calories</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+
+    <tbody>
+
+    {% for food in foods %}
+
+    <tr>
+        <td>{{ food.food_name }}</td>
+        <td>{{ food.calories }}</td>
+
+        <td>
+            <a href="{% url 'delete_food' food.id %}" class="btn btn-sm btn-danger">
+                Delete
+            </a>
+        </td>
+
+    </tr>
+
+    {% endfor %}
+
+    </tbody>
+
+</table>
+
+<h3>Total Calories: {{ total_calories }}</h3>
+
+{% endblock %}

@@ -1,3 +1,5 @@
+from django.urls import path , include
+
 """
 URL configuration for calorieProject project.
 
@@ -19,4 +21,5 @@ from django.urls import path
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('', include('calorieApp.urls')),
 ]

@@ -26,3 +26,14 @@ def add_food(request):
         return redirect("home")
 
     return render(request, "add_food.html")
+
+def delete_food(request, id):
+    food = get_object_or_404(Food, id=id)
+    food.delete()
+
+    return redirect("home")
+
+def reset_calories(request):
+    Food.objects.all().delete()
+
+    return redirect("home")
